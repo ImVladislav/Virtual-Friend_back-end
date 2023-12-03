@@ -8,7 +8,7 @@ import OpenAI from "openai";
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || "-", // Your OpenAI API key here, I used "-" to avoid errors when the key is not set but you should not do that
+  apiKey: process.env.OPENAI_API_KEY, // Your OpenAI API key here, I used "-" to avoid errors when the key is not set but you should not do that
 });
 
 const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
@@ -56,20 +56,27 @@ app.post("/chat", async (req, res) => {
   if (!userMessage) {
     res.send({
       messages: [
-        {
-          text: "Hey dear... How was your day?",
-          audio: await audioFileToBase64("audios/intro_0.wav"),
-          lipsync: await readJsonTranscript("audios/intro_0.json"),
-          facialExpression: "smile",
-          animation: "Talking_1",
+                    {
+          text: "test!",
+          audio: await audioFileToBase64("audios/api_0.wav"),
+          lipsync: await readJsonTranscript("audios/api_0.json"),
+          facialExpression: "angry",
+          animation: "Angry",
         },
-        {
-          text: "I missed you so much... Please don't go for so long!",
-          audio: await audioFileToBase64("audios/intro_1.wav"),
-          lipsync: await readJsonTranscript("audios/intro_1.json"),
-          facialExpression: "sad",
-          animation: "Crying",
-        },
+        // {
+        //   text: "Hey dear... How was your day?",
+        //   audio: await audioFileToBase64("audios/intro_0.wav"),
+        //   lipsync: await readJsonTranscript("audios/intro_0.json"),
+        //   facialExpression: "smile",
+        //   animation: "Talking_1",
+        // },
+        // {
+        //   text: "I missed you so much... Please don't go for so long!",
+        //   audio: await audioFileToBase64("audios/intro_1.wav"),
+        //   lipsync: await readJsonTranscript("audios/intro_1.json"),
+        //   facialExpression: "sad",
+        //   animation: "Crying",
+        // },
       ],
     });
     return;
@@ -77,20 +84,27 @@ app.post("/chat", async (req, res) => {
   if (!elevenLabsApiKey || openai.apiKey === "-") {
     res.send({
       messages: [
-        {
-          text: "Please my dear, don't forget to add your API keys!",
+              {
+          text: "I missed you so much... Please don't go for so long!",
           audio: await audioFileToBase64("audios/api_0.wav"),
           lipsync: await readJsonTranscript("audios/api_0.json"),
           facialExpression: "angry",
           animation: "Angry",
         },
-        {
-          text: "You don't want to ruin Wawa Sensei with a crazy ChatGPT and ElevenLabs bill, right?",
-          audio: await audioFileToBase64("audios/api_1.wav"),
-          lipsync: await readJsonTranscript("audios/api_1.json"),
-          facialExpression: "smile",
-          animation: "Laughing",
-        },
+        // {
+        //   text: "Please my dear, don't forget to add your API keys!",
+        //   audio: await audioFileToBase64("audios/api_0.wav"),
+        //   lipsync: await readJsonTranscript("audios/api_0.json"),
+        //   facialExpression: "angry",
+        //   animation: "Angry",
+        // },
+        // {
+        //   text: "You don't want to ruin Wawa Sensei with a crazy ChatGPT and ElevenLabs bill, right?",
+        //   audio: await audioFileToBase64("audios/api_1.wav"),
+        //   lipsync: await readJsonTranscript("audios/api_1.json"),
+        //   facialExpression: "smile",
+        //   animation: "Laughing",
+        // },
       ],
     });
     return;
